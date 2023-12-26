@@ -1,0 +1,52 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container_nav">
+                <div class="header_logo">
+                    <h1 href="#">{% block header %}exam{% endblock %}</h1>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="header_nav">
+                    <div class="nav">
+                        <a href="{% url 'main:index' %}">Главная</a>
+                        <a href="{% url 'main:profile' %}">Профиль</a>
+                        <a href="{% url 'main:service' %}">Каталог товаров</a>
+                        <a href="{% url 'main:logout' %}">Выйти</a>
+
+                    </div>
+                    {% else %}
+                    <div class="header_nav">
+                        <a href="{% url 'main:index' %}">Главная</a>
+                        <a href="{% url 'main:service' %}">Каталог товаров</a>
+                        <a href="{% url 'main:register' %}">Регистрация</a>
+                        <a  href="{% url 'main:login' %}">Вход</a>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </nav>
+
+
+        <p>{% block tagline %}{% endblock %}</p>
+
+    </header>
+    <main>
+        <div class="container_block">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+</body>
+</html>

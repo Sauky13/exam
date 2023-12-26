@@ -1,0 +1,46 @@
+{% extends 'main/basic.html' %}
+{% load static %}
+
+{% block content %}
+<div class="user">
+    {% if user.is_authenticated %}
+    <div class="user_container">
+        <img src="{{ user.avatar.url }}" alt="Аватар пользователя"
+            style="height: 150px; width: 150px; object-fit: cover;">
+        <div>
+            <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+            {% if user.age %}
+            <h5>Возраст: {{ user.age }}</h5>
+            {% else %}
+            <h5>Возраст не указан</h5>
+            {% endif %}
+        </div>
+    </div>
+    <h3>Ваши заказы</h3>
+</div>
+
+<div class="card_services_container">
+    <div>
+        {% if user_orders %}
+            {% for order in user_orders %}
+                <p>{{ order.created_at }}</p>
+
+            {% for service in order.products.all %}
+                <img src="{{ service.photo.url }}" alt="{{ service.name }} Photo" width="200">
+                <p>{{ service.name }} ${{ service.price }} Р.</p>
+            {% endfor %}
+        {% endfor %}
+
+        {% else %}
+            <p>У вас пока нет заказов.</p>
+        {% endif %}
+        </div>
+</div>
+
+{% else %}
+<div>
+    Для просмотра профиля необходимо <a href="{% url 'login' %}">войти</a> или <a href="{% url 'register' %}"
+        class="alert-link">зарегистрироваться</a>.
+</div>
+{% endif %}
+{% endblock %}

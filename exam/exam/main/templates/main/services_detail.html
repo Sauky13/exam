@@ -1,0 +1,19 @@
+{% extends 'main/basic.html' %}
+
+{% block content %}
+    <h2 class="title_page">{{ service.name }}</h2>
+<div class="center_container">
+    <img src="{{ service.photo.url }}" alt="{{ service.name }} Photo" width="200">
+    <p>{{ service.description }}</p>
+    <p>${{ service.price }} Р.</p>
+
+    {% if user.is_authenticated %}
+            <form method="post" action="{% url 'main:order_service' service_id=service.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Заказать</button>
+            </form>
+        {% else %}
+            <p class="btn"><a href="{% url 'main:login' %}">Log in to order</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

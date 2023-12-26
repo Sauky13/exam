@@ -1,0 +1,21 @@
+{% extends 'main/basic.html' %}
+{% load static %}
+{% block content %}
+    <h2 class="title_page">Результаты поиска</h2>
+
+    <p>По запросу "{{ query }}" найдено:</p>
+
+    <div class="card_services_container">
+        {% for service in results %}
+            <div class="card_services">
+                <img src="{{ service.photo.url }}" alt="Фото товара" style="height: 150px; width: 150px; object-fit: cover;">
+                <div>
+                    <a href="{% url 'main:service_detail' service_id=service.id %}">{{ service.name }}</a>
+                    <p>{{ service.description }}</p>
+                    <p>{{ service.price }} Р.</p>
+                    <a href="{% url 'main:service_detail' service_id=service.id %}">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

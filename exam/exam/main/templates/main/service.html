@@ -1,0 +1,32 @@
+{% extends 'main/basic.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="title_page">Все товары
+        <span class="btn_staff">
+            {% if user.is_staff %}
+                <a href="{% url 'main:add_service' %}"><button>Добавить товар</button></a>
+            {% endif %}
+        </span>
+    </h2>
+    <div class="search_form">
+    <form method="get" action="{% url 'main:search_services' %}">
+        <input type="text" name="query" placeholder="Поиск по названию">
+        <button type="submit">Поиск</button>
+    </form>
+    </div>
+    <div class="card_services_container">
+        {% for service in services %}
+            <div class="card_services">
+                <img src="{{ service.photo.url }}" alt="Фото товара" style="height: 150px; width: 150px; object-fit: cover;">
+                <div>
+                    <a href="{% url 'main:service_detail' service_id=service.id %}">{{ service.name }}</a>
+                    <p>{{ service.description }}</p>
+                    <p>{{ service.price }} Р.</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

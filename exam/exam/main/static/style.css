@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+}
+
+.container_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_nav {
+    display: flex;
+}
+
+.header_nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+
+.header_logo{
+    padding: 20px;
+}
+
+.card_services_container{
+    display: grid;
+    grid-template-columns: 0.5fr 0fr 0.5fr;
+    padding: 10px;
+    text-align: center;
+}
+.user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.name_page{
+    display: flex;
+    justify-content: center;
+}
+.container_block {
+    margin: 0 auto;
+    padding: 20px;
+
+}
+.user_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title_page{
+    display: flex;
+    justify-content: center;
+    padding: 5px 5px 10px;
+
+}
+.btn_staff {
+    margin-left: 10px;
+}
+.center_container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.search_form{
+    display: flex;
+    justify-content: center;
+}
